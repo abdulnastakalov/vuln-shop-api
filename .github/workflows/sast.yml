@@ -23,8 +23,20 @@ jobs:
         run: |
           pip install semgrep
       
-        - name: Run Semgrep (block on ERROR)
+      - name: Run Semgrep and generate SARIF
+        id: semgrep
+        continue-on-error: true
         run: |
-          semgrep --config p/default --severity ERROR .
-    
+          semgrep --config p/default --severity ERROR --sarif --output semgrep.sarif .
       
+      - name: Upload SARIF to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+      
+      - name: Check for blocking issues
+        if: steps.semgrep.outcome == 'failure'
+        run: |
+          echo "❌ High-severity vulnerabilities found!"
+          exit 1
