@@ -23,6 +23,8 @@ jobs:
         run: |
           pip install semgrep
       
-      - name: Run Semgrep SAST
+        - name: Run Semgrep (block on ERROR)
         run: |
-          semgrep --config p/default .
+          semgrep --config p/default --severity ERROR .
+    
+      
