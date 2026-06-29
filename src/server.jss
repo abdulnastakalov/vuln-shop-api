@@ -17,8 +17,7 @@ const JWT_SECRET = "super_secret_key_do_not_share_123";
 
 app.get("/users", (req, res) => {
   const name = req.query.name;
-  const query = "SELECT * FROM users WHERE name = '" + name + "'";
-  db.all(query, (err, rows) => {
+  db.all("SELECT * FROM users WHERE name = ?", [name], (err, rows) => {
     if (err) return res.status(500).json({ error: String(err) });
     res.json(rows);
   });
