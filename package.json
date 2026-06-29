@@ -1,0 +1,14 @@
+{
+  "name": "vuln-shop-api",
+  "version": "1.0.0",
+  "description": "Vulnerable API for SAST lab",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "sqlite3": "^5.1.6"
+  }
+}
