@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# ⚠️ BU VACİBDİR - permissions əlavə edin!
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
 jobs:
   sast-scan:
     runs-on: ubuntu-latest
@@ -38,5 +44,5 @@ jobs:
       - name: Check for blocking issues
         if: steps.semgrep.outcome == 'failure'
         run: |
-          echo "❌ High-severity vulnerabilities found!"
+          echo "❌ High-severity vulnerabilities found! Build failed."
           exit 1
