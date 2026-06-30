@@ -6,11 +6,9 @@ on:
   pull_request:
     branches: [ main, master ]
 
-# ⚠️ BU VACİBDİR - permissions əlavə edin!
 permissions:
   contents: read
   security-events: write
-  actions: read
 
 jobs:
   sast-scan:
